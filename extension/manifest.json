@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "代理执行器（供油猴脚本调用）",
+  "version": "1.2.0",
+  "description": "零配置的浏览器代理执行器。本身不含任何配置与界面，完全由油猴脚本通过消息驱动。",
+  "permissions": [
+    "proxy",
+    "storage",
+    "alarms",
+    "privacy",
+    "webRequest",
+    "webRequestAuthProvider"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "bridge.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
